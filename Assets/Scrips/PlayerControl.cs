@@ -14,9 +14,12 @@ public class PlayerControl : MonoBehaviour
 
     public float jumpForce = 10;
 
+    public GrowndSensor groundSensor;
+
     void Awake()
     {
         rigidBody = GetComponent<Rigidbody2D>();
+        groundSensor = GetComponentInChildren<GrowndSensor>();
     }
 
     // Start is called before the first frame update
@@ -33,7 +36,7 @@ public class PlayerControl : MonoBehaviour
     {
         inputHorizontal = Input.GetAxisRaw("Horizontal");
 
-        if(Input.GetButtonDown("Jump"))
+        if(Input.GetButtonDown("Jump") && groundSensor.isGrounded == true)
         {
             rigidBody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         }

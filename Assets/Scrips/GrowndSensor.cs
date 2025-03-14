@@ -12,6 +12,11 @@ public class GrowndSensor : MonoBehaviour
 
     }
 
+    void OnTriggerStay2D(Collider2D collider)
+    {
+        isGrounded = true;
+    }
+
     void OnTriggerExit2D(Collider2D collider)
     {
         isGrounded = false;
