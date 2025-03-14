@@ -8,6 +8,15 @@ public class PlayerControl : MonoBehaviour
 
     public int direction = 1;
 
+    private float inputHorizontal;
+
+    public Rigidbody2D rigidBody;
+
+    void Awake()
+    {
+        rigidBody = GetComponent<Rigidbody2D>();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -19,10 +28,20 @@ public class PlayerControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        inputHorizontal = Input.GetAxisRaw("Horizontal");
+
         //transform.position = new Vector3(transform.position.x + direction * playerSpeed * Time.deltaTime, transform.position.y, transform.position.z);
-
         //transform.Translate(new Vector3(direction * playerSpeed * Time.deltaTime, 0, 0));
+        //es para controlar desde el inspector de Unity 
+        //transform.position = Vector2.MoveTowards(transform.position, new Vector2(transform.position.x + inputHorizontal, transform.position.y), playerSpeed * Time.deltaTime);
+    }
 
-        transform.position = Vector2.MoveTowards(transform.position, new Vector2(0, 0), playerSpeed * Time.deltaTime);
+    void FixedUpdate()
+    {
+        //rigidBody.velocity = new  Vector2(inputHorizontal * playerSpeed, rigidBody.velocity.y);
+
+        //rigidBody.AddForce(new Vector2(inputHorizontal, 0))
+
+        rigidBody.MovePosition(new Vector2(100, 0)).
     }
 }
