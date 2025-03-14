@@ -12,6 +12,8 @@ public class PlayerControl : MonoBehaviour
 
     public Rigidbody2D rigidBody;
 
+    public float jumpForce = 10;
+
     void Awake()
     {
         rigidBody = GetComponent<Rigidbody2D>();
@@ -21,8 +23,9 @@ public class PlayerControl : MonoBehaviour
     void Start()
     {
         //esto teletransporta al personaje
-
         //transform.position = new Vector3(-92.13f,4.9f,0);
+
+        
     }
 
     // Update is called once per frame
@@ -30,18 +33,24 @@ public class PlayerControl : MonoBehaviour
     {
         inputHorizontal = Input.GetAxisRaw("Horizontal");
 
+        if(Input.GetButtonDown("Jump"))
+        {
+            rigidBody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+        }
+
         //transform.position = new Vector3(transform.position.x + direction * playerSpeed * Time.deltaTime, transform.position.y, transform.position.z);
         //transform.Translate(new Vector3(direction * playerSpeed * Time.deltaTime, 0, 0));
         //es para controlar desde el inspector de Unity 
         //transform.position = Vector2.MoveTowards(transform.position, new Vector2(transform.position.x + inputHorizontal, transform.position.y), playerSpeed * Time.deltaTime);
+       
     }
 
     void FixedUpdate()
     {
-        //rigidBody.velocity = new  Vector2(inputHorizontal * playerSpeed, rigidBody.velocity.y);
+        rigidBody.velocity = new  Vector2(inputHorizontal * playerSpeed, rigidBody.velocity.y);
 
-        //rigidBody.AddForce(new Vector2(inputHorizontal, 0))
+        //rigidBody.AddForce(new Vector2(inputHorizontal, 0));
 
-        rigidBody.MovePosition(new Vector2(100, 0)).
+        //rigidBody.MovePosition(new Vector2(100, 0));
     }
 }
