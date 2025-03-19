@@ -14,9 +14,10 @@ public class CameraMovement : MonoBehaviour
 
     public float interpolationRatio = 0.5f;
 
-    void Start()
+    void Awake()
     {
-        
+        playerTransform = GameObject.FindWithTag("Player").transform;
+
     }
 
     void FixedUpdate()

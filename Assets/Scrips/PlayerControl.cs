@@ -18,11 +18,21 @@ public class PlayerControl : MonoBehaviour
 
     private SpriteRenderer _spriteRenderer;
 
+    private Animator _animator;
+
+    private AudioSource _audioSource;
+
+    public AudioClip jumpSFX;
+
+    
+
     void Awake()
     {
         rigidBody = GetComponent<Rigidbody2D>();
         _groundSensor = GetComponentInChildren<GrowndSensor>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
+        _animator = GetComponent<Animator>();
+        _audioSource = GetComponent<AudioSource>();
     }
 
     // Start is called before the first frame update
@@ -45,6 +55,17 @@ public class PlayerControl : MonoBehaviour
 
         Movement();
 
+        _animator.SetBool("IsJumping", !_groundSensor.isGrounded);
+
+      /*if(_groundSensor.isGrounded)
+        {
+            _animator.SetBool("IsJumping", false);
+        }
+        else
+        {
+            _animator.SetBool("IsJumping", true);
+        }*/
+
         //transform.position = new Vector3(transform.position.x + direction * playerSpeed * Time.deltaTime, transform.position.y, transform.position.z);
         //transform.Translate(new Vector3(direction * playerSpeed * Time.deltaTime, 0, 0));
         //es para controlar desde el inspector de Unity 
@@ -63,17 +84,27 @@ public class PlayerControl : MonoBehaviour
     {
       if(inputHorizontal > 0)
         {
-            _spriteRenderer.flipX = false; 
+            _spriteRenderer.flipX = false;
+            _animator.SetBool("IsRunning", true); 
         }
 
       else if(inputHorizontal < 0)
         {
             _spriteRenderer.flipX = true;
-        }   
+            _animator.SetBool("IsRunning", true);
+        
+        }
+      else
+        {
+            _animator.SetBool("IsRunning", false);
+        }
+
     }
 
     void Jump()
     {
         rigidBody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+        _animator.SetBool("IsJumping", true);
+        _audioSource.PlayOneShot(jumpSFX);
     }
 }
