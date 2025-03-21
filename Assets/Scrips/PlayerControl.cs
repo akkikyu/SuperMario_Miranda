@@ -12,7 +12,7 @@ public class PlayerControl : MonoBehaviour
 
     public Rigidbody2D rigidBody;
 
-    public float jumpForce = 15f;
+    public float jumpForce = 25f;
 
     public GrowndSensor _groundSensor;
 
