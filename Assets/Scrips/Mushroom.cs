@@ -29,7 +29,7 @@ public class Mushroom : MonoBehaviour
     public void Death()
     {
         direction = 0;
-        _rigidBody.gravitScale = 0;
+        _rigidBody.gravityScale = 0;
         _animator.SetTrigger("isDead");
         _boxCollider.enabled = false;
         Destroy(gameObject, 0.3f);
@@ -41,7 +41,9 @@ public class Mushroom : MonoBehaviour
 
         if(collision.gameObject.CompareTag("Player"))
         {
-            Destroy(collision.gameObject);
+            //Destroy(collision.gameObject);
+            PlayerControl playerScript = collision.gameObject.GetComponent<PlayerControl>();
+            playerScript.Death();
         }
     }
 }
