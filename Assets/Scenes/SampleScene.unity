@@ -45491,7 +45491,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bgm: {fileID: 8300000, guid: aea156486dd68b8489e4d683591a9db1, type: 3}
-  gameOver: {fileID: 8300000, guid: fbfe57e20e43f1242aca707edee788e0, type: 3}
+  gameOver: {fileID: 8300000, guid: dc0dec722ab29c443b58d95f2e4af61b, type: 3}
+  delay: 2
+  timer: 0
 --- !u!1 &1802963677
 GameObject:
   m_ObjectHideFlags: 0

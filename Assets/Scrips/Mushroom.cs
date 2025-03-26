@@ -35,6 +35,7 @@ public class Mushroom : MonoBehaviour
         Destroy(gameObject, 0.3f);
     }
 
+
     void OnCollisionEnter2D(Collision2D collision)
     {
         direction *= -1;
@@ -46,4 +47,8 @@ public class Mushroom : MonoBehaviour
             playerScript.Death();
         }
     }
+
+    Void OnBecameVisible(
+        spee
+    )
 }
