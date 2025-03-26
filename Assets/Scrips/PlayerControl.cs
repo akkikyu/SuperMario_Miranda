@@ -135,7 +135,8 @@ public class PlayerControl : MonoBehaviour
         inputHorizontal = 0;
         rigidBody.velocity = Vector2.zero;
 
-        _soundManager.Invoke("DeathBGM", 2);
+        //_soundManager.Invoke("DeathBGM", 2);
+        StartCoroutine(_soundManager.DeathBGM())
 
         _gameManager.isPlaying = false;
     }
