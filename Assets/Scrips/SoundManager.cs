@@ -41,6 +41,19 @@ public class SoundManager : MonoBehaviour
         _audioSource.Play();
     }
 
+    public void PauseBGM()
+    {
+        if(_gameManager.isPaused)
+        {
+            _audioSource.Pause();
+        }
+
+        else
+        {
+            _audioSource.Play();
+        }
+    }
+
     /*public void DeathBGM()
     {
         _audioSource.Stop();

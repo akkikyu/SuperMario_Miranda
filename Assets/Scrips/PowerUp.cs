@@ -2,41 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Mushroom : MonoBehaviour
+public class PowerUp : MonoBehaviour
 {
-    private Animator _animator;
-    private AudioSource _audioSource;
-    public AudioClip _deathSFX;
     private Rigidbody2D _rigidBody;
     private BoxCollider2D _boxCollider;
 
     public int direction = 1;
     public float speed = 2.5f;
-    
-    void Awake ()
+
+    void Awake()
     {
-        _animator = GetComponent<Animator>();
-        _audioSource = GetComponent<AudioSource>();
         _rigidBody = GetComponent<Rigidbody2D>();
-        _boxCollider = GetComponent<BoxCollider2D>();
+        _boxCollider = GetComponent<BoxCollider2D>();   
     }
 
     void FixedUpdate()
     {
         _rigidBody.velocity = new Vector2(direction * speed, _rigidBody.velocity.y);
     }
-
-    public void Death()
-    {
-        direction = 0;
-        _rigidBody.gravityScale = 0;
-        _animator.SetTrigger("isDead");
-        _audioSource.clip = _deathSFX;
-        _audioSource.Play();
-        _boxCollider.enabled = false;
-        Destroy(gameObject, 0.3f);
-    }
-
 
     void OnCollisionEnter2D(Collision2D collision)
     {
@@ -49,7 +32,7 @@ public class Mushroom : MonoBehaviour
         {
             //Destroy(collision.gameObject);
             PlayerControl playerScript = collision.gameObject.GetComponent<PlayerControl>();
-            playerScript.Death();
+            Death();
         }
     }
 
@@ -61,5 +44,13 @@ public class Mushroom : MonoBehaviour
     void OnbecameInvisible()
     {
         speed = 0;
+    }
+
+    public void Death()
+    {
+        direction = 0;
+        _rigidBody.gravityScale = 0;
+        _boxCollider.enabled = false;
+        Destroy(gameObject, 0.3f);
     }
 }

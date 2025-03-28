@@ -32,6 +32,12 @@ public class PlayerControl : MonoBehaviour
 
     private SoundManager _soundManager;
 
+    public Transform bulletSpawn;
+
+    public GameObject bulletPrefab;
+
+    public AudioClip shootSFX;
+
     
 
     void Awake()
@@ -50,9 +56,7 @@ public class PlayerControl : MonoBehaviour
     void Start()
     {
         //esto teletransporta al personaje
-        //transform.position = new Vector3(-92.13f,4.9f,0);
-
-        
+        //transform.position = new Vector3(-92.13f,4.9f,0);       
     }
 
     void Update()
@@ -66,26 +70,18 @@ public class PlayerControl : MonoBehaviour
         if(Input.GetButtonDown("Jump") && _groundSensor.isGrounded == true)
         {
             Jump();
+
+        }
+
+        if(Input.GetButtonDown("Fire1"))
+        {
+            Shoot();
         }
 
         Movement();
 
         _animator.SetBool("IsJumping", !_groundSensor.isGrounded);
 
-      /*if(_groundSensor.isGrounded)
-        {
-            _animator.SetBool("IsJumping", false);
-        }
-        else
-        {
-            _animator.SetBool("IsJumping", true);
-        }*/
-
-        //transform.position = new Vector3(transform.position.x + direction * playerSpeed * Time.deltaTime, transform.position.y, transform.position.z);
-        //transform.Translate(new Vector3(direction * playerSpeed * Time.deltaTime, 0, 0));
-        //es para controlar desde el inspector de Unity 
-        //transform.position = Vector2.MoveTowards(transform.position, new Vector2(transform.position.x + inputHorizontal, transform.position.y), playerSpeed * Time.deltaTime);
-       
     }
 
     void FixedUpdate()
@@ -99,15 +95,14 @@ public class PlayerControl : MonoBehaviour
     {
       if(inputHorizontal > 0)
         {
-            _spriteRenderer.flipX = false;
+           transform.rotation = Quaternion.Euler(0, 0, 0);
             _animator.SetBool("IsRunning", true); 
         }
 
       else if(inputHorizontal < 0)
         {
-            _spriteRenderer.flipX = true;
-            _animator.SetBool("IsRunning", true);
-        
+            transform.rotation = Quaternion.Euler(0, 180, 0);
+            _animator.SetBool("IsRunning", true);       
         }
       else
         {
@@ -134,11 +129,19 @@ public class PlayerControl : MonoBehaviour
         inputHorizontal = 0;
         rigidBody.velocity = Vector2.zero;
         
-        rigidBody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+        rigidBody.AddForce(Vector2.up * jumpForce / 2, ForceMode2D.Impulse);
 
         //_soundManager.Invoke("DeathBGM", 2);
         StartCoroutine(_soundManager.DeathBGM());
 
         _gameManager.isPlaying = false;
+
+        Destroy(gameObject, 2);
+    }
+
+    void Shoot()
+    {
+        Instantiate(bulletPrefab, bulletSpawn.position, bulletSpawn.rotation);
+        _audioSource.PlayOneShot(shootSFX);
     }
 }

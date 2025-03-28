@@ -9,6 +9,8 @@ public class MisteryBox : MonoBehaviour
     public AudioClip _misteryBoxSFX;
     public AudioClip _misteryBoxSFX2;
     private bool _isOpen = false;
+    public Transform poweupSpawner;
+    public GameObject powerupPrefab;
 
     void Awake ()
     {
@@ -21,17 +23,18 @@ public class MisteryBox : MonoBehaviour
         if(!_isOpen)
         {
            _animator.SetTrigger("OpenBox");
-
-           
+          
            _audioSource.clip = _misteryBoxSFX;
 
            _isOpen = true;
+           
+           Spawn();
         }
 
         else
         {
         _audioSource.volume = 1f;
-           _audioSource.clip = _misteryBoxSFX2;
+        _audioSource.clip = _misteryBoxSFX2;
         }
         _audioSource.Play();
     }
@@ -41,8 +44,12 @@ public class MisteryBox : MonoBehaviour
         if(collider.gameObject.CompareTag("Player"))
         {
           ActivateBox();
-        }
-            
+        }           
+    }
+
+    void Spawn()
+    {
+        Instantiate(powerupPrefab, poweupSpawner.position, poweupSpawner.rotation);
     }
 
 }
