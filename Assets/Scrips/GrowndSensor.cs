@@ -6,10 +6,17 @@ public class GrowndSensor : MonoBehaviour
 {
   public bool isGrounded;
   private Mushroom _enemyScript;
+  private Rigidbody2D _rigidBody;
 
-  void OnTriggerEnter2D(Collider2D collider)
-   {
-     if(collider.gameObject.layer == 3)
+
+    void Awake()
+    {
+      _rigidBody = GetComponentInParent<Rigidbody2D>();
+    }
+
+    void OnTriggerEnter2D(Collider2D collider)
+    {
+      if(collider.gameObject.layer == 3)
       {
         isGrounded = true;
         Debug.Log(collider.gameObject.name);
@@ -17,6 +24,7 @@ public class GrowndSensor : MonoBehaviour
       }
       else if (collider.gameObject.layer == 6)
       {
+        _rigidBody.AddForce(Vector2.up * 10, ForceMode2D.Impulse);
         _enemyScript = collider.gameObject.GetComponent<Mushroom>();
         _enemyScript.Death();
       }

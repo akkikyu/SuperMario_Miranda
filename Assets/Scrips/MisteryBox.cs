@@ -27,7 +27,7 @@ public class MisteryBox : MonoBehaviour
            _audioSource.clip = _misteryBoxSFX;
 
            _isOpen = true;
-           
+
            Spawn();
         }
 

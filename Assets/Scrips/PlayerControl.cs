@@ -38,6 +38,12 @@ public class PlayerControl : MonoBehaviour
 
     public AudioClip shootSFX;
 
+    public bool canShoot = false;
+
+    public float powerUpDuration = 10f;
+
+    public float powerUpTimer;
+
     
 
     void Awake()
@@ -73,15 +79,19 @@ public class PlayerControl : MonoBehaviour
 
         }
 
-        if(Input.GetButtonDown("Fire1"))
+        if(Input.GetButtonDown("Fire1") && canShoot)
         {
             Shoot();
         }
 
+        if(canShoot)
+        {
+            PowerUp();
+        }
+        
         Movement();
 
         _animator.SetBool("IsJumping", !_groundSensor.isGrounded);
-
     }
 
     void FixedUpdate()
@@ -143,5 +153,16 @@ public class PlayerControl : MonoBehaviour
     {
         Instantiate(bulletPrefab, bulletSpawn.position, bulletSpawn.rotation);
         _audioSource.PlayOneShot(shootSFX);
+    }
+
+    void PowerUp()
+    {
+        powerUpTimer += Time.deltaTime;
+
+        if(powerUpTimer >= powerUpDuration)
+        {
+            canShoot = false;
+            powerUpTimer = 0;
+        }
     }
 }
