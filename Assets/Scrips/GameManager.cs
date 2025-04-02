@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
     public bool isPlaying = true;
     public bool isPaused = false;
     private SoundManager _soundManager;
+    public GameObject pauseCanvas;
     
     void Awake()
     {
@@ -17,19 +18,28 @@ public class GameManager : MonoBehaviour
     {
         if(Input.GetButtonDown("Pause"))
         {
-            if(isPaused)
-            {
-                Time.timeScale = 1;
-                isPaused = false;
-                _soundManager.PauseBGM();
-            }
-            else
-            {
-                //Para pausar el tiempo, valor entre 0 y 1. 0(se pausa), 0.5 (mitad de velocidad), 1 (velocidad normal)
-                Time.timeScale = 0;
-                isPaused = true;
-                _soundManager.PauseBGM();
-            }
+            Pause();
+        }
+    }
+
+    public void Pause()
+    {
+       
+        if(isPaused)
+        {
+            Time.timeScale = 1;
+            isPaused = false;
+            _soundManager.PauseBGM();
+            pauseCanvas.SetActive(false);
+        }
+        else
+        {
+            //Para pausar el tiempo, valor entre 0 y 1. 0(se pausa), 0.5 (mitad de velocidad), 1 (velocidad normal)
+            Time.timeScale = 0;
+            isPaused = true;
+            _soundManager.PauseBGM();
+            pauseCanvas.SetActive(true);
         }
     }
 }
+
