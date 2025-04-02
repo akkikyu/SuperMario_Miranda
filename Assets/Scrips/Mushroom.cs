@@ -40,7 +40,7 @@ public class Mushroom : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.CompareTag("Tuberia") || collision.gameObject.layer == 6)
+        if(collision.gameObject.CompareTag("Tuberia") || collision.gameObject.layer == 6 || collision.gameObject.CompareTag("Tope Goomba"))
         {
             direction *= -1;
         }
