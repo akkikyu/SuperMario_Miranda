@@ -30,7 +30,6 @@ public class Bandera : MonoBehaviour
     
     public void FlagPole()
     {
-        _audioSource.clip = _flagPoleSFX;
-        _audioSource.Play();
+        _audioSource.PlayOneShot(_flagPoleSFX);
     }
 }

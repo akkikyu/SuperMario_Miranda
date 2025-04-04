@@ -9394,7 +9394,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6368cfecadcaea4d93d4f66e995bbde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _touchFlag: {fileID: 0}
+  _touchFlag: {fileID: 364454798}
   _flagPoleSFX: {fileID: 8300000, guid: f6b9d5ecf8609d94d9a26a87f36b3a30, type: 3}
 --- !u!82 &364454800
 AudioSource:
