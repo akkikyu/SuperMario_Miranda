@@ -8,6 +8,8 @@ public class GrowndSensor : MonoBehaviour
   private Mushroom _enemyScript;
   private Rigidbody2D _rigidBody;
 
+  public float jumpDamage = 5;
+
 
     void Awake()
     {
@@ -26,7 +28,7 @@ public class GrowndSensor : MonoBehaviour
       {
         _rigidBody.AddForce(Vector2.up * 10, ForceMode2D.Impulse);
         _enemyScript = collider.gameObject.GetComponent<Mushroom>();
-        _enemyScript.Death();
+        _enemyScript.TakeDamage(jumpDamage);
       }
     }
 

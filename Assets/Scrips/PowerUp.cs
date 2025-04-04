@@ -39,6 +39,7 @@ public class PowerUp : MonoBehaviour
             //Destroy(collision.gameObject);
             PlayerControl playerScript = collision.gameObject.GetComponent<PlayerControl>();
             playerScript.canShoot = true;
+            playerScript.powerUpTimer = 0;
             Death();
         }
     }
