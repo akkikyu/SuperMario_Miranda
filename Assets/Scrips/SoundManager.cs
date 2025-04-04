@@ -54,19 +54,6 @@ public class SoundManager : MonoBehaviour
         }
     }
 
-    /*public void DeathBGM()
-    {
-        _audioSource.Stop();
-
-        timer += Time.deltaTime;
-
-        if(timer >= delay)
-        {
-            timerFinished = true;
-            _audioSource.PlayOneShot(gameOver);
-        }
-    }*/
-
     public IEnumerator DeathBGM()
     {
         _audioSource.Stop();
@@ -74,5 +61,10 @@ public class SoundManager : MonoBehaviour
         yield return new WaitForSeconds(delay);
 
         _audioSource.PlayOneShot(gameOver);
+    }
+
+    public void LevelFinished()
+    {
+        _audioSource.Stop();
     }
 }
