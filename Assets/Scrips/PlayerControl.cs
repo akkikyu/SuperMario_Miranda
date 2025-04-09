@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerControl : MonoBehaviour
 {
@@ -141,6 +142,8 @@ public class PlayerControl : MonoBehaviour
         _gameManager.isPlaying = false;
 
         Destroy(gameObject, 2);
+
+        SceneManager.LoadScene(2);
     }
 
     void Shoot()
