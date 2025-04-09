@@ -17,6 +17,8 @@ public class Mushroom : MonoBehaviour
     public float maxHealth = 5;
     private float currentHealth;
 
+    private GameManager _gameManager;
+
 
     void Awake ()
     {
@@ -25,6 +27,7 @@ public class Mushroom : MonoBehaviour
         _rigidBody = GetComponent<Rigidbody2D>();
         _boxCollider = GetComponent<BoxCollider2D>();
         _healthBar = GetComponentInChildren<Slider>();
+        _gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
     }
 
     void Start()
@@ -50,6 +53,7 @@ public class Mushroom : MonoBehaviour
         _audioSource.Play();
         _boxCollider.enabled = false;
         _audioSource.PlayOneShot(_deathSFX);
+        _gameManager.AddGoombas();
         Destroy(gameObject, _deathSFX.length);
     }
 

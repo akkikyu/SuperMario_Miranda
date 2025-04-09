@@ -60,13 +60,6 @@ public class PlayerControl : MonoBehaviour
         _soundManager = GameObject.FindObjectOfType<SoundManager>().GetComponent<SoundManager>();
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        //esto teletransporta al personaje
-        //transform.position = new Vector3(-92.13f,4.9f,0);       
-    }
-
     void Update()
     {
         if(!_gameManager.isPlaying)
@@ -120,7 +113,6 @@ public class PlayerControl : MonoBehaviour
         {
             _animator.SetBool("IsRunning", false);
         }
-
     }
 
     void Jump()
