@@ -6,6 +6,9 @@ using UnityEngine.SceneManagement;
 
 public class PlayerControl : MonoBehaviour
 {
+    //ordenarlo con el [Header("")]
+    //solo funciona después de un public o un [SerializeField]
+
     public float playerSpeed = 4.5f;
 
     public int direction = 1;
@@ -47,7 +50,8 @@ public class PlayerControl : MonoBehaviour
     public float powerUpTimer;
 
     public Image powerUpImage;
-    
+
+
 
     void Awake()
     {

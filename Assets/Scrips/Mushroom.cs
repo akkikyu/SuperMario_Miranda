@@ -20,6 +20,7 @@ public class Mushroom : MonoBehaviour
     private GameManager _gameManager;
 
 
+
     void Awake ()
     {
         _animator = GetComponent<Animator>();
@@ -32,8 +33,6 @@ public class Mushroom : MonoBehaviour
 
     void Start()
     {
-        speed = 0;
-
         currentHealth = maxHealth;
         _healthBar.maxValue = maxHealth;
         _healthBar.value = maxHealth;
@@ -87,11 +86,13 @@ public class Mushroom : MonoBehaviour
 
     void OnBecameVisible()
     {
-        speed = 2.5f;
+        direction = 1;
+        _gameManager.enemiesInScreen.Add(gameObject);
     }
 
-    void OnbecameInvisible()
+    void OnBecameInvisible()
     {
-        speed = 0;
+        direction = 0;
+        _gameManager.enemiesInScreen.Remove(gameObject);
     }
 }

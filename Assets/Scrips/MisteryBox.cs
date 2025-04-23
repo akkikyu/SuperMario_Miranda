@@ -10,7 +10,9 @@ public class MisteryBox : MonoBehaviour
     public AudioClip _misteryBoxSFX2;
     private bool _isOpen = false;
     public Transform poweupSpawner;
-    public GameObject powerupPrefab;
+    public GameObject[] powerupPrefab;
+
+    public int powerUpIndex;
 
     void Awake ()
     {
@@ -49,7 +51,7 @@ public class MisteryBox : MonoBehaviour
 
     void Spawn()
     {
-        Instantiate(powerupPrefab, poweupSpawner.position, poweupSpawner.rotation);
+        Instantiate(powerupPrefab[powerUpIndex], poweupSpawner.position, poweupSpawner.rotation);
     }
 
 }
