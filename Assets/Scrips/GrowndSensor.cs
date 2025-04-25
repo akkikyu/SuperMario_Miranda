@@ -7,8 +7,10 @@ public class GrowndSensor : MonoBehaviour
   public bool isGrounded;
   private Mushroom _enemyScript;
   private Rigidbody2D _rigidBody;
+  
 
   public float jumpDamage = 5;
+  public bool canDoubleJump = true;
 
 
     void Awake()
@@ -21,6 +23,7 @@ public class GrowndSensor : MonoBehaviour
       if(collider.gameObject.layer == 3)
       {
         isGrounded = true;
+        canDoubleJump = true;
         Debug.Log(collider.gameObject.name);
         Debug.Log(collider.gameObject.transform.position);
       }
